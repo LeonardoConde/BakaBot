@@ -19,4 +19,9 @@ class MessageManager {
         return true
     }
 
+    fun delete(): Boolean {
+
+        return true
+    }
+
 }
