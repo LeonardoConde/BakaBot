@@ -8,17 +8,29 @@ class Identificator {
     var channel: TextChannel? = null
     var guild: Guild? = null
 
-    constructor(event: GuildMessageReceivedEvent) {
-        setChannel(event)
-        setGuild(event)
+    constructor(c: TextChannel, g: Guild) {
+        setChannel(c)
+        setGuild(g)
     }
 
-    fun setChannel(event: GuildMessageReceivedEvent){
-        channel = event.channel
+    @JvmName("setChannel1")
+    fun setChannel(c: TextChannel) {
+        channel = c
     }
 
-    fun setGuild(event: GuildMessageReceivedEvent){
-        guild = event.guild
+    @JvmName("getChannel1")
+    fun getChannel(): TextChannel? {
+        return channel
+    }
+
+    @JvmName("setGuild1")
+    fun setGuild(g: Guild) {
+        guild = g
+    }
+
+    @JvmName("getGuild1")
+    fun getGuild(): Guild? {
+        return guild
     }
 
 }
