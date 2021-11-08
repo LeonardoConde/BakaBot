@@ -51,6 +51,8 @@ dependencies {
     //This dependency is user by the Dot-net
     implementation("io.github.cdimascio:java-dotenv:5.1.1")
 
+    implementation("mysql:mysql-connector-java:8.0.15")
+
     //Tests
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
