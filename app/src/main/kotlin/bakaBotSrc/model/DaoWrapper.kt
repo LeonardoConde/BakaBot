@@ -21,12 +21,14 @@ class DaoWrapper {
         }
     }
 
-    fun update(sqlCommand:String, args: Array<Any>?):Boolean{
+    fun testConection() {
+        logger.info("{} is ready!",con)
+    }
+
+    fun update(sqlCommand:String, args: List<Any>? = null):Boolean{
         var ok = true;
         try {
             if(con!=null){
-                //val stmt: Statement = con!!.createStatement()
-                //stmt.executeUpdate(sqlCommand);
                 val stmt = con!!.prepareStatement(sqlCommand) as PreparedStatement
                 if(args!=null){
                     for ((index, value) in args.withIndex()) {
@@ -39,12 +41,32 @@ class DaoWrapper {
                 ok=false;
             }
         }catch (e:Exception){
+            println(e.message)
             ok =false;
         }
         return ok
     }
 
-    fun testConection() {
-        //logger.info("{} is ready!",con)
+    fun getList(sqlCommand:String, args: List<Any>? = null):ResultSet?{
+        var rs : ResultSet? = null
+        try{
+            if(con!=null){
+                val stmt = con!!.prepareStatement(sqlCommand) as PreparedStatement
+                if(args!=null){
+                    for ((index, value) in args.withIndex()) {
+                        stmt.setString(index+1, args[index].toString())
+                    }
+                }
+                rs = stmt.executeQuery()
+                stmt.close()
+            }
+
+        }catch (e: Exception){
+            println(e.message)
+        }
+        return rs;
     }
+
+
+
 }

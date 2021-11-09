@@ -20,6 +20,8 @@ class Bot  {
 
     fun start() {
         DaoWrapper().testConection()
-        bot.setStatus(OnlineStatus.ONLINE)
+        var re = DaoWrapper().getList("SELECT * FROM mydb.Usuario;")
+
+        val status = bot.setStatus(OnlineStatus.ONLINE)
     }
 }
