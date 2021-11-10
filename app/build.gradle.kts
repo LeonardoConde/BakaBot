@@ -51,12 +51,16 @@ dependencies {
     //This dependency is user by the Dot-net
     implementation("io.github.cdimascio:java-dotenv:5.1.1")
 
+    implementation("org.json:json:20210307")
+
     //Tests
     // Use the Kotlin test library.
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+
 
 
 }
