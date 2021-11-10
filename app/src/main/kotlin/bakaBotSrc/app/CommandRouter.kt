@@ -1,6 +1,6 @@
 package bakaBotSrc.app
 
-import bakaBotSrc.easteregg.Easteregg
+import bakaBotSrc.service.command.Easteregg
 import bakaBotSrc.model.AudioManager
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import bakaBotSrc.service.command.Help
@@ -10,7 +10,6 @@ import java.util.*
 
 class CommandRouter {
     fun router(args:List<String>,event: GuildMessageReceivedEvent){
-        println("Router says hi!")
         try{
             when(args[0].lowercase(Locale.getDefault())){
                 "help" -> Help(event).sendHelp()
@@ -20,7 +19,7 @@ class CommandRouter {
                 "join" -> AudioManager(event).join()
                 "leave" -> AudioManager(event).leave()
                 "livia" -> Easteregg(event).livia()
-                //o comando acima é uma referancia criada pelo kahao,
+                //o comando acima é uma referencia criada pelo kahao,
                 //o grupo não tem nd haver com os objetivos desse comando
                 "anime" -> {
                     if(args[1].isNullOrEmpty()) throw Exception()

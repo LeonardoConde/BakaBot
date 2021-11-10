@@ -1,4 +1,4 @@
-package bakaBotSrc.easteregg
+package bakaBotSrc.service.command
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 
