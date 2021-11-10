@@ -1,5 +1,6 @@
 package bakaBotSrc.app
 
+import bakaBotSrc.easteregg.Easteregg
 import bakaBotSrc.model.AudioManager
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 
@@ -14,6 +15,7 @@ class CommandRouter {
             "songgame" -> println("Comando SongGame")
             "join" -> AudioManager(event).join()
             "leave" -> AudioManager(event).leave()
+            "livia" -> Easteregg(event).livia()
 
             else -> {
                 println("Comando invalido!")
