@@ -30,25 +30,25 @@ class Involker : ListenerAdapter() {
         return result
     }
 
-    fun analyzer(source:String,event: GuildMessageReceivedEvent){
+    fun analyzer(source:String){
         val args = source.split(" ")
         val command = get(args[0])
         if(command>highLevelCommands){
-            CommandRouter().router(args,event)
+            CommandRouter().router(command,args.subList(1,args.size))
         }
     }
 
-    fun analyzer(source:String,event: GuildMessageReceivedEvent, id :Long){
+    fun analyzer(source:String, id :Long){
         val args = source.split(" ")
-
+        val command = get(args[0])
         if(id==env.get("MY_ID")?.toLong()){
-            CommandRouter().router(args,event)
+            CommandRouter().router(command,args.subList(1,args.size))
         }else if(env.get("ENVIRONMENT").equals("tester")){
             val teamSize = env.get("DEV_TEAM_SIZE")
             if(teamSize.isNullOrEmpty() && teamSize!!.toInt()>0){
                 for(i in 1..teamSize.toInt()) {
                     if(id==env.get("DEV_ID$i")?.toLong()){
-                        CommandRouter().router(args,event)
+                        CommandRouter().router(command,args.subList(1,args.size))
                     }
                 }
             }
@@ -79,10 +79,10 @@ class Involker : ListenerAdapter() {
         val raw = event.message.contentRaw
         if(raw.startsWith(prefix)){
             if(!env.get("ENVIRONMENT").equals("dev") && !env.get("ENVIRONMENT").equals("tester")){
-                analyzer(raw.subSequence(prefix.length,raw.length).toString(),event)
+                analyzer(raw.subSequence(prefix.length,raw.length).toString())
 
             }else{
-                analyzer(raw.subSequence(prefix.length,raw.length).toString(),event,event.author.idLong)
+                analyzer(raw.subSequence(prefix.length,raw.length).toString(),event.author.idLong)
             }
             println(raw.subSequence(prefix.length,raw.length).toString())
         }
